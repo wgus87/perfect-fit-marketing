@@ -8,7 +8,7 @@ import ClientManagement from "./pages/ClientManagement"
 
 function App() {
   return (
-    <Router basename="/shiny-fiesta">
+    <Router>
       <div className="App">
         <Routes>
           <Route path="/" element={<LandingPage />} />
