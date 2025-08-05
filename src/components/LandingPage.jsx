@@ -4,10 +4,10 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
 import { Form } from './ui/form'
-import { useMobile } from '../hooks/use-mobile'
+import { useIsMobile } from '../hooks/use-mobile'
 
 const LandingPage = () => {
-  const isMobile = useMobile()
+  const isMobile = useIsMobile()
 
   const services = [
     {
