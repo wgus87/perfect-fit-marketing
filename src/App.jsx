@@ -1,29 +1,14 @@
-import { useState, useEffect } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { LandingPage } from '@/components/LandingPage'
-import { Progress } from '@/components/ui/progress'
-import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  LineChart, Line, PieChart, Pie, Cell, Area, AreaChart
-} from 'recharts'
-import { 
-  Users, DollarSign, TrendingUp, Mail, Phone, Calendar, 
-  Target, Activity, CheckCircle, Clock, AlertCircle,
-  Bot, Zap, BarChart3, PieChart as PieChartIcon
-} from 'lucide-react'
 import './App.css'
-
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8']
+import LandingPage from './components/LandingPage'
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  
-  if (!isAuthenticated) {
-    return <LandingPage />
-  }
+  return (
+    <div className="App">
+      <LandingPage />
+    </div>
+  )
+}
+  const [overview, setOverview] = useState(null)
   const [leads, setLeads] = useState([])
   const [pipeline, setPipeline] = useState([])
   const [clients, setClients] = useState([])
