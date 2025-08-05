@@ -4,7 +4,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/shiny-fiesta/',
+  base: '/ai_agency/',
   plugins: [react()],
   resolve: {
     alias: {
