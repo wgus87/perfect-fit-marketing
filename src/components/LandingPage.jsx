@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button } from './ui/button'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card'
 import { Input } from './ui/input'
@@ -8,27 +9,32 @@ import { useIsMobile } from '../hooks/use-mobile'
 
 const LandingPage = () => {
   const isMobile = useIsMobile()
+  const navigate = useNavigate()
 
   const services = [
     {
       title: "Lead Generation",
       description: "AI-powered lead generation that finds your perfect prospects",
-      icon: "💡"
+      icon: "💡",
+      path: "/lead-generation"
     },
     {
       title: "Lead Qualification",
       description: "Smart filtering to focus on high-quality leads",
-      icon: "✨"
+      icon: "✨",
+      path: "/lead-qualification"
     },
     {
       title: "Sales Automation",
       description: "Automated outreach that feels personal and genuine",
-      icon: "🎯"
+      icon: "🎯",
+      path: "/sales-automation"
     },
     {
       title: "Client Management",
       description: "Seamless client relationship management and support",
-      icon: "🤝"
+      icon: "🤝",
+      path: "/client-management"
     }
   ]
 
@@ -43,10 +49,21 @@ const LandingPage = () => {
           AI-Powered Marketing Solutions That Adapt to Your Business
         </p>
         <div className="flex flex-col md:flex-row gap-4 justify-center">
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+          <Button 
+            size="lg" 
+            className="bg-blue-600 hover:bg-blue-700"
+            onClick={() => navigate('/lead-generation')}
+          >
             Get Started
           </Button>
-          <Button size="lg" variant="outline">
+          <Button 
+            size="lg" 
+            variant="outline"
+            onClick={() => {
+              const contactSection = document.querySelector('#contact-form')
+              contactSection.scrollIntoView({ behavior: 'smooth' })
+            }}
+          >
             Book a Demo
           </Button>
         </div>
@@ -57,12 +74,19 @@ const LandingPage = () => {
         <h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
+            <Card 
+              key={index} 
+              className="hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={() => navigate(service.path)}
+            >
               <CardHeader>
                 <div className="text-4xl mb-4">{service.icon}</div>
                 <CardTitle>{service.title}</CardTitle>
                 <CardDescription>{service.description}</CardDescription>
               </CardHeader>
+              <CardContent>
+                <Button variant="ghost" className="w-full">Learn More →</Button>
+              </CardContent>
             </Card>
           ))}
         </div>
@@ -107,7 +131,12 @@ const LandingPage = () => {
             <p className="text-xl mb-6">
               Join businesses that are growing with AI-powered marketing solutions.
             </p>
-            <Button size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-gray-100">
+            <Button 
+              size="lg" 
+              variant="secondary" 
+              className="bg-white text-blue-600 hover:bg-gray-100"
+              onClick={() => navigate('/lead-generation')}
+            >
               Start Your Journey
             </Button>
           </CardContent>
@@ -115,7 +144,7 @@ const LandingPage = () => {
       </section>
 
       {/* Contact Form */}
-      <section className="container mx-auto px-4 py-16">
+      <section id="contact-form" className="container mx-auto px-4 py-16">
         <Card className="max-w-2xl mx-auto">
           <CardHeader>
             <CardTitle className="text-2xl text-center">Contact Us</CardTitle>
