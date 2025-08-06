@@ -1,203 +1,283 @@
-import React, { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Button } from './ui/button'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card'
-import { Input } from './ui/input'
-import { Textarea } from './ui/textarea'
-import { Form } from './ui/form'
-import { useIsMobile } from '../hooks/use-mobile'
+import { motion } from 'framer-motion'
 
 const LandingPage = () => {
-  const isMobile = useIsMobile()
-  const navigate = useNavigate()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
 
-  const services = [
+  useEffect(() => {
+    setIsVisible(true)
+  }, [])
+  
+  const menuItems = [
     {
       title: "Lead Generation",
-      description: "AI-powered lead generation that finds your perfect prospects",
-      icon: "💡",
-      path: "/lead-generation"
+      path: "/lead-generation",
+      description: "Find and attract potential customers"
     },
     {
       title: "Lead Qualification",
-      description: "Smart filtering to focus on high-quality leads",
-      icon: "✨",
-      path: "/lead-qualification"
+      path: "/lead-qualification",
+      description: "Evaluate and prioritize leads"
     },
     {
       title: "Sales Automation",
-      description: "Automated outreach that feels personal and genuine",
-      icon: "🎯",
-      path: "/sales-automation"
+      path: "/sales-automation",
+      description: "Streamline your sales process"
     },
     {
       title: "Client Management",
-      description: "Seamless client relationship management and support",
-      icon: "🤝",
-      path: "/client-management"
+      path: "/client-management",
+      description: "Manage client relationships effectively"
     }
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 pt-20 pb-16 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-          Perfect Fit Digital Marketing Agency
-        </h1>
-        <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-          AI-Powered Marketing Solutions That Adapt to Your Business
-        </p>
-        <div className="flex flex-col md:flex-row gap-4 justify-center">
-          <Link to="/lead-generation">
-            <Button 
-              size="lg" 
-              className="bg-blue-600 hover:bg-blue-700 w-full"
-            >
-              Get Started
-            </Button>
-          </Link>
-          <Button 
-            size="lg" 
-            variant="outline"
-            asChild
-            onClick={() => {
-              const contactSection = document.querySelector('#contact-form')
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' })
-              }
-            }}
-          >
-            <button>Book a Demo</button>
-          </Button>
-        </div>
-      </section>
+    <div className="min-h-screen bg-gray-50">
+      {/* Navigation */}
+      <nav className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <span className="text-xl font-bold text-blue-600">
+                Perfect Fit Digital
+              </span>
+            </div>
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-4">
+              {menuItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  {item.title}
+                </Link>
+              ))}
+            </div>
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+                aria-expanded="false"
+              >
+                <span className="sr-only">Open main menu</span>
+                {/* Hamburger Icon */}
+                <svg
+                  className={`${isMobileMenuOpen ? 'hidden' : 'block'} h-6 w-6`}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                {/* Close Icon */}
+                <svg
+                  className={`${isMobileMenuOpen ? 'block' : 'hidden'} h-6 w-6`}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
 
-      {/* Services Grid */}
-      <section className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, index) => (
-            <Link to={service.path} key={index} className="block">
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <CardHeader>
-                  <div className="text-4xl mb-4">{service.icon}</div>
-                  <CardTitle>{service.title}</CardTitle>
-                  <CardDescription>{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button variant="ghost" className="w-full">Learn More →</Button>
-                </CardContent>
-              </Card>
-            </Link>
+          {/* Mobile Menu Panel */}
+          <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden`}>
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              {menuItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className="text-gray-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <div className="relative inline-block mb-8">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur-xl opacity-20"></div>
+            <h1 className="relative text-5xl font-bold text-gray-900 mb-4">
+              Welcome to Perfect Fit Digital Marketing
+            </h1>
+          </div>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Your AI-Powered Marketing Solution for the Digital Age
+          </p>
+          <div className="flex justify-center gap-4 mb-12">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                Get Started
+              </Button>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button variant="outline" className="px-8 py-3 rounded-lg">
+                Learn More
+              </Button>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Stats Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {[
+            { label: 'Clients Served', value: '500+' },
+            { label: 'Success Rate', value: '95%' },
+            { label: 'ROI Average', value: '3.5x' }
+          ].map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              className="bg-white rounded-xl shadow-sm p-6 text-center"
+            >
+              <div className="text-3xl font-bold text-blue-600 mb-2">{stat.value}</div>
+              <div className="text-gray-600">{stat.label}</div>
+            </motion.div>
           ))}
         </div>
-      </section>
 
-      {/* Why Choose Us */}
-      <section className="container mx-auto px-4 py-16 bg-gray-50">
-        <h2 className="text-3xl font-bold text-center mb-12">Why Choose Perfect Fit?</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card>
-            <CardContent className="pt-6">
-              <h3 className="text-xl font-semibold mb-2">AI-Powered Insights</h3>
-              <p className="text-gray-600">
-                Our AI algorithms analyze market trends and customer behavior to deliver actionable insights.
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="pt-6">
-              <h3 className="text-xl font-semibold mb-2">Personalized Approach</h3>
-              <p className="text-gray-600">
-                Every business is unique. We tailor our solutions to fit your specific needs and goals.
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="pt-6">
-              <h3 className="text-xl font-semibold mb-2">Proven Results</h3>
-              <p className="text-gray-600">
-                Track your success with real-time analytics and transparent reporting.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="container mx-auto px-4 py-16 text-center">
-        <Card className="bg-blue-600 text-white p-8">
-          <CardContent>
-            <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Marketing?</h2>
-            <p className="text-xl mb-6">
-              Join businesses that are growing with AI-powered marketing solutions.
-            </p>
-            <Link to="/lead-generation">
-              <Button 
-                size="lg" 
-                variant="secondary" 
-                className="bg-white text-blue-600 hover:bg-gray-100 w-full"
+        {/* Service Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          {menuItems.map((item, index) => (
+            <motion.div
+              key={item.path}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+            >
+              <Link
+                to={item.path}
+                className="block group"
               >
-                Start Your Journey
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-      </section>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 text-xl mr-4">
+                      {index === 0 ? "📈" : index === 1 ? "🎯" : index === 2 ? "⚡" : "🤝"}
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 mb-6">{item.description}</p>
+                  <div className="flex items-center text-blue-600 group-hover:text-blue-700">
+                    <span>Learn More</span>
+                    <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </motion.div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </main>
 
-      {/* Contact Form */}
-      <section id="contact-form" className="container mx-auto px-4 py-16">
-        <Card className="max-w-2xl mx-auto">
-          <CardHeader>
-            <CardTitle className="text-2xl text-center">Contact Us</CardTitle>
-            <CardDescription className="text-center">
-              Ready to get started? Send us a message and we'll get back to you within 24 hours.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={(e) => {
-              e.preventDefault()
-              // Handle form submission
-              const formData = new FormData(e.target)
-              console.log(Object.fromEntries(formData))
-              alert('Thank you for your message! We will get back to you soon.')
-              e.target.reset()
-            }} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium">Name</label>
-                  <Input id="name" name="name" placeholder="Your name" required />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">Email</label>
-                  <Input id="email" name="email" type="email" placeholder="your@email.com" required />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="company" className="text-sm font-medium">Company</label>
-                <Input id="company" name="company" placeholder="Your company name" />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium">Message</label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  placeholder="Tell us about your project..."
-                  className="min-h-[100px]"
-                  required
-                />
-              </div>
-              <Button type="submit" className="w-full">Send Message</Button>
-            </form>
-          </CardContent>
-        </Card>
+      {/* Call to Action */}
+      <section className="bg-gradient-to-r from-blue-600 to-blue-700 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Ready to Transform Your Digital Marketing?
+            </h2>
+            <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
+              Join hundreds of businesses that are already growing with our AI-powered solutions.
+            </p>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                Get Started Now
+              </Button>
+            </motion.div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="container mx-auto px-4 py-8 border-t">
-        <div className="text-center text-gray-600">
-          <p>© 2025 Perfect Fit Digital Marketing Agency. All rights reserved.</p>
+      <footer className="bg-white border-t">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-1 md:col-span-2">
+              <h3 className="text-xl font-bold text-blue-600 mb-4">Perfect Fit Digital</h3>
+              <p className="text-gray-600 mb-4 max-w-sm">
+                Empowering businesses with AI-driven marketing solutions that deliver real results.
+              </p>
+              <div className="flex space-x-4">
+                {['twitter', 'linkedin', 'facebook'].map((social) => (
+                  <a
+                    key={social}
+                    href={`#${social}`}
+                    className="text-gray-400 hover:text-blue-600 transition-colors"
+                  >
+                    <span className="sr-only">{social}</span>
+                    <div className="w-6 h-6">{/* Add social icons here */}</div>
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h4 className="text-sm font-semibold text-gray-900 mb-4">Solutions</h4>
+              <ul className="space-y-3">
+                {menuItems.map((item) => (
+                  <li key={item.path}>
+                    <Link
+                      to={item.path}
+                      className="text-gray-600 hover:text-blue-600 transition-colors"
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-sm font-semibold text-gray-900 mb-4">Company</h4>
+              <ul className="space-y-3">
+                {['About', 'Blog', 'Careers', 'Contact'].map((item) => (
+                  <li key={item}>
+                    <a
+                      href={`#${item.toLowerCase()}`}
+                      className="text-gray-600 hover:text-blue-600 transition-colors"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t">
+            <p className="text-center text-gray-500">
+              © 2025 Perfect Fit Digital Marketing Agency. All rights reserved.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
