@@ -126,14 +126,18 @@ const LandingPage = () => {
           </p>
           <div className="flex justify-center gap-4 mb-12">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                Get Started
-              </Button>
+              <Link to="/contact">
+                <Button className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                  Get Started
+                </Button>
+              </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="outline" className="px-8 py-3 rounded-lg">
-                Learn More
-              </Button>
+              <Link to="/about">
+                <Button variant="outline" className="px-8 py-3 rounded-lg">
+                  Learn More
+                </Button>
+              </Link>
             </motion.div>
           </div>
         </motion.div>
@@ -212,9 +216,11 @@ const LandingPage = () => {
               Join hundreds of businesses that are already growing with our AI-powered solutions.
             </p>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                Get Started Now
-              </Button>
+              <Link to="/contact">
+                <Button className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                  Get Started Now
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
