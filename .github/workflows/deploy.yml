@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: 18
       - name: Install dependencies
-        run: cd dashboard_frontend && npm install
+        run: cd dashboard_frontend && npm install --legacy-peer-deps
       - name: Build website
         run: cd dashboard_frontend && npm run build
       - name: Deploy to GitHub Pages
