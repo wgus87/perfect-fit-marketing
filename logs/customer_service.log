@@ -1,0 +1,19 @@
+2025-08-01 10:45:20,212 - __main__ - ERROR - Error logging communication: table client_communications has no column named method
+2025-08-01 10:45:20,214 - __main__ - INFO - Acknowledgment sent for request 1
+2025-08-01 10:45:20,214 - __main__ - ERROR - Error logging communication: table client_communications has no column named method
+2025-08-01 10:45:20,215 - __main__ - INFO - Created contact request 1 with priority high
+2025-08-01 10:45:20,217 - __main__ - INFO - Scheduled welcome gratitude message 1 for client 1
+2025-08-01 10:45:20,217 - __main__ - INFO - Starting customer service cycle...
+2025-08-01 10:45:20,219 - __main__ - ERROR - Error logging communication: table client_communications has no column named method
+2025-08-01 10:45:20,219 - __main__ - INFO - Request 1 resolved by auto_resolution_system
+2025-08-01 10:45:20,221 - __main__ - ERROR - Error generating service metrics: no such column: response_time_minutes
+2025-08-01 10:45:20,221 - __main__ - INFO - Customer service cycle completed
+2025-08-01 10:45:48,801 - __main__ - ERROR - Error logging communication: database is locked
+2025-08-01 10:45:48,801 - __main__ - INFO - Acknowledgment sent for request 1
+2025-08-01 10:45:53,810 - __main__ - ERROR - Error logging communication: database is locked
+2025-08-01 10:45:53,812 - __main__ - INFO - Created contact request 1 with priority high
+2025-08-01 10:45:53,812 - __main__ - ERROR - Error scheduling gratitude message: no such table: leads
+2025-08-01 10:45:53,812 - __main__ - INFO - Starting customer service cycle...
+2025-08-01 10:45:58,831 - __main__ - ERROR - Error logging communication: database is locked
+2025-08-01 10:45:58,875 - __main__ - INFO - Request 1 resolved by auto_resolution_system
+2025-08-01 10:45:58,888 - __main__ - INFO - Customer service cycle completed

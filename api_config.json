@@ -1,0 +1,42 @@
+{
+  "hunter_email_validation": {
+    "name": "hunter_email_validation",
+    "api_key": "0c8e969d9ef2110571b20e4ba8a9839636939b3a",
+    "base_url": "https://api.hunter.io/v2/email-verifier",
+    "rate_limit_per_minute": 10,
+    "rate_limit_per_day": 50,
+    "free_tier_limit": 50,
+    "enabled": true,
+    "priority": 1
+  },
+  "clearbit_company_enrichment": {
+    "name": "clearbit_company_enrichment",
+    "api_key": "sk_DEMO_KEY",
+    "base_url": "https://company.clearbit.com/v2/companies/find",
+    "rate_limit_per_minute": 60,
+    "rate_limit_per_day": 100,
+    "free_tier_limit": 100,
+    "enabled": true,
+    "priority": 1
+  },
+  "apideck_lead": {
+    "name": "apideck_lead",
+    "api_key": "",
+    "base_url": "https://unify.apideck.com/crm/",
+    "rate_limit_per_minute": 60,
+    "rate_limit_per_day": 2500,
+    "free_tier_limit": 2500,
+    "enabled": true,
+    "priority": 1
+  },
+  "apideck_crm": {
+    "name": "apideck_crm",
+    "api_key": "",
+    "base_url": "https://unify.apideck.com/crm/",
+    "rate_limit_per_minute": 60,
+    "rate_limit_per_day": 2500,
+    "free_tier_limit": 2500,
+    "enabled": true,
+    "priority": 2
+  }
+}

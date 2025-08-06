@@ -1,0 +1,38 @@
+{
+  "lead_generation": {
+    "enabled": true,
+    "schedule": "daily",
+    "target_leads_per_day": 20,
+    "max_concurrent_searches": 3
+  },
+  "prospect_research": {
+    "enabled": true,
+    "schedule": "hourly",
+    "batch_size": 10
+  },
+  "lead_scoring": {
+    "enabled": true,
+    "schedule": "hourly",
+    "batch_size": 50
+  },
+  "lead_qualification": {
+    "enabled": true,
+    "schedule": "every_2_hours",
+    "batch_size": 20
+  },
+  "outreach_automation": {
+    "enabled": true,
+    "schedule": "daily",
+    "max_outreach_per_day": 100
+  },
+  "sales_automation": {
+    "enabled": true,
+    "schedule": "daily",
+    "follow_up_frequency": 3
+  },
+  "client_management": {
+    "enabled": true,
+    "schedule": "daily",
+    "report_frequency": "monthly"
+  }
+}
